@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "Solana",
-    platforms: [.iOS(.v11), .macOS(.v10_12)],
+    platforms: [.iOS(.v13), .macOS(.v10_12)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -17,7 +17,7 @@ let package = Package(
         .package(name: "TweetNacl", url: "https://github.com/bitmark-inc/tweetnacl-swiftwrap.git", from: "1.0.2"),
         .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.0"),
         .package(name: "Beet", url: "https://github.com/metaplex-foundation/beet-swift.git", from: "1.0.2"),
-        .package(name: "secp256k1", url: "https://github.com/Boilertalk/secp256k1.swift.git", from: "0.1.7"),
+        .package(url: "https://github.com/MainasuK/web3swift.git", branch: "fix-xcode-16"),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
     ],
     targets: [
@@ -25,11 +25,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "Solana",
-            dependencies: ["TweetNacl", "Starscream", "secp256k1", "Beet"]
+            dependencies: ["TweetNacl", "Starscream", "web3swift", "Beet"]
         ),
         .testTarget(
             name: "SolanaTests",
-            dependencies: ["Solana", "TweetNacl", "Starscream", "secp256k1", "Beet"],
+            dependencies: ["Solana", "TweetNacl", "Starscream", "web3swift", "Beet"],
             resources: [.copy("Resources/Mocks")]
         )
     ]
